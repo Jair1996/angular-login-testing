@@ -1,0 +1,44 @@
+<section class="min-vh-100 d-flex flex-column justify-content-center align-items-center">
+  <div *ngIf="showAlert" class="alert alert-success" role="alert">
+    Login correcto usuario: <strong>{{ userLoggedIn }}</strong>
+  </div>
+  <div class="shadow-lg p-5 mb-3 bg-body-tertiary rounded">
+    <div class="mb-4">
+      <p class="text-primary fw-semibold font-monospace fs-3 text-center">Login</p>
+    </div>
+    <form (ngSubmit)="login()" [formGroup]="loginForm" autocomplete="off">
+      <div class="mb-3">
+        <label for="txtUsername" class="form-label">Username</label>
+        <input
+          [class.is-invalid]="isTheFieldInvalid('username')"
+          formControlName="username"
+          type="text"
+          class="form-control"
+          id="txtUsername" />
+        <div class="invalid-feedback">Tiene que tener mas de 5 caracteres</div>
+      </div>
+      <div class="mb-3">
+        <label for="txtPassword" class="form-label">Password</label>
+        <input
+          [class.is-invalid]="isTheFieldInvalid('password')"
+          formControlName="password"
+          type="password"
+          class="form-control"
+          id="txtPassword" />
+        <div class="invalid-feedback">Tiene que tener mas de 4 caracteres</div>
+      </div>
+      <div class="mb-3 row d-flex justify-content-center">
+        <button
+          [disabled]="loginForm.invalid"
+          type="submit"
+          class="btn btn-primary mb-3">
+          Login
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="shadow-lg p-4 bg-body-tertiary rounded">
+    <p><strong>Username:</strong> {{ loginForm.get('username')?.value }}</p>
+    <p class="m-0"><strong>Password:</strong> {{ loginForm.get('password')?.value }}</p>
+  </div>
+</section>

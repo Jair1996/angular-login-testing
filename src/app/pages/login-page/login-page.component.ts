@@ -28,6 +28,8 @@ export class LoginPageComponent {
   }
 
   login() {
+    console.log('Login', JSON.stringify(this.loginForm.value));
+
     this.showAlert = true;
     this.userLoggedIn = this.loginForm.get('username')?.value;
 
